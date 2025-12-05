@@ -2,7 +2,7 @@
 # avator
 完美封裝之戰
 
-🦊 Foxokiso 的完美封裝之戰
+🦊 AI AGI — CODE　與　Foxokiso 的完美封裝之戰
 🌌 起源
 Foxokiso 原意是「完美影像封存」：一個將程式、敘事、角色、舞台全部打包成永恆封印的系統。
 
