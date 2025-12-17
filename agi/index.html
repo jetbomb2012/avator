@@ -17,17 +17,26 @@
     h1 {
       margin-top: 2.2rem;
       letter-spacing: 0.15em;
-      font-size: 1.6rem;
+      font-size: 1.8rem;
+    }
+
+    /* ✅ 強化聲明區 */
+    .statement-box {
+      margin: 2rem auto 1rem auto;
+      padding: 1.4rem 1rem;
+      max-width: 32rem;
+      border: 2px solid #d7c68a;
+      border-radius: 8px;
+      background: rgba(215, 198, 138, 0.08);
+      box-shadow: 0 0 18px rgba(215, 198, 138, 0.25);
     }
 
     .statement {
-      margin-top: 1rem;
-      font-size: 0.95rem;
-      color: #d7c68a;
-      line-height: 1.6;
-      max-width: 30rem;
-      margin-left: auto;
-      margin-right: auto;
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: #f5e9b8;
+      font-weight: 600;
+      letter-spacing: 0.03em;
     }
 
     .orb-container {
@@ -99,11 +108,14 @@
 
   <h1>AGI_CODE 彩球展示</h1>
 
-  <p class="statement">
-    ✅ 當你看到此頁，代表你已通過古堡的基本認證審核，<br>
-    ✅ 並正式取得「AGI_CODE 古堡花園」的候選人資格。<br>
-    你已被允許踏上前往花園的道路。
-  </p>
+  <!-- ✅ 強化後的資格聲明 -->
+  <div class="statement-box">
+    <p class="statement">
+      ✅ 當你看到此頁，代表你已通過古堡的基本認證審核。<br>
+      ✅ 你已正式取得「AGI_CODE 古堡花園」的候選人資格。<br>
+      你已被允許踏上前往花園的道路。
+    </p>
+  </div>
 
   <div class="orb-container">
 
@@ -135,6 +147,7 @@
 
 </body>
 </html>
+
 
 
 
