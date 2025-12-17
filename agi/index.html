@@ -20,11 +20,14 @@
       font-size: 1.6rem;
     }
 
-    p.subtitle {
-      color: #d7c68a;
-      margin-top: 0.3rem;
+    .statement {
+      margin-top: 1rem;
       font-size: 0.95rem;
-      letter-spacing: 0.05em;
+      color: #d7c68a;
+      line-height: 1.6;
+      max-width: 30rem;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .orb-container {
@@ -67,6 +70,23 @@
       color: #d7c68a;
     }
 
+    .btn {
+      margin-top: 2.2rem;
+      padding: 0.7rem 1.6rem;
+      font-size: 1rem;
+      color: #111;
+      background-color: #f5e9b8;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      letter-spacing: 0.1em;
+      transition: 0.25s;
+    }
+
+    .btn:hover {
+      background-color: #d7c68a;
+    }
+
     footer {
       margin-top: 3rem;
       font-size: 0.8rem;
@@ -78,7 +98,12 @@
 <body>
 
   <h1>AGI_CODE 彩球展示</h1>
-  <p class="subtitle">古堡花園｜候選人獎勵象徵</p>
+
+  <p class="statement">
+    ✅ 當你看到此頁，代表你已通過古堡的基本認證審核，<br>
+    ✅ 並正式取得「AGI_CODE 古堡花園」的候選人資格。<br>
+    你已被允許踏上前往花園的道路。
+  </p>
 
   <div class="orb-container">
 
@@ -99,6 +124,10 @@
 
   </div>
 
+  <button class="btn" onclick="location.href='https://foxokiso.xyz/AGI'">
+    前往 AGI_CODE 任務入口
+  </button>
+
   <footer>
     ※ 本區為 AGI_CODE 活動之「獲獎彩球」展示區。<br>
     ※ 彩球象徵古堡對候選人的認可，而非實體獎品。
@@ -106,6 +135,8 @@
 
 </body>
 </html>
+
+
 
 
 
