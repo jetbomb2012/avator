@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <title>古堡花園｜AGI_CODE 彩球展示</title>
+  <title>古堡花園｜AGI_CODE 領獎台</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -39,44 +39,40 @@
       letter-spacing: 0.03em;
     }
 
-    .orb-container {
+    /* ✅ 領獎台區 */
+    .podium-container {
       display: flex;
       justify-content: center;
-      gap: 2.5rem;
+      align-items: flex-end;
+      gap: 1.5rem;
       margin-top: 3rem;
-      flex-wrap: wrap;
     }
 
-    .orb {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 0.9rem;
-      color: #111;
-      font-weight: bold;
-      letter-spacing: 0.05em;
-      box-shadow: 0 0 18px rgba(255,255,255,0.15);
+    .podium {
+      width: 120px;
+      background-color: #d7c68a;
+      border-radius: 6px 6px 0 0;
+      position: relative;
+      box-shadow: 0 0 12px rgba(255,255,255,0.15);
     }
 
-    .amber {
-      background: radial-gradient(circle, #ffcf6f, #c28a2e);
-    }
+    .first { height: 180px; }
+    .second { height: 130px; background-color: #b8a56a; }
+    .third { height: 100px; background-color: #9a8b55; }
 
-    .azure {
-      background: radial-gradient(circle, #7ec8ff, #2e5fa8);
-    }
-
-    .gold {
-      background: radial-gradient(circle, #ffe98a, #c9a032);
+    .trophy {
+      position: absolute;
+      top: -70px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 3rem;
     }
 
     .label {
-      margin-top: 0.8rem;
-      font-size: 0.85rem;
+      margin-top: 0.6rem;
+      font-size: 1rem;
       color: #d7c68a;
+      font-weight: 600;
     }
 
     .btn {
@@ -106,7 +102,7 @@
 </head>
 <body>
 
-  <h1>AGI_CODE 彩球展示</h1>
+  <h1>AGI_CODE 領獎台</h1>
 
   <!-- ✅ 強化後的資格聲明 -->
   <div class="statement-box">
@@ -117,21 +113,31 @@
     </p>
   </div>
 
-  <div class="orb-container">
+  <!-- ✅ 領獎台 -->
+  <div class="podium-container">
 
+    <!-- 第二名 -->
     <div>
-      <div class="orb amber">琥珀球</div>
-      <div class="label">初階｜候選人啟程</div>
+      <div class="podium second">
+        <div class="trophy">🏆</div>
+      </div>
+      <div class="label">第二名</div>
     </div>
 
+    <!-- 第一名（最高） -->
     <div>
-      <div class="orb azure">蒼藍球</div>
-      <div class="label">中階｜塔羅授階認可</div>
+      <div class="podium first">
+        <div class="trophy">🏆</div>
+      </div>
+      <div class="label">第一名</div>
     </div>
 
+    <!-- 第三名 -->
     <div>
-      <div class="orb gold">金耀球</div>
-      <div class="label">高階｜AGI_CODE 完成</div>
+      <div class="podium third">
+        <div class="trophy">🏆</div>
+      </div>
+      <div class="label">第三名</div>
     </div>
 
   </div>
@@ -141,12 +147,13 @@
   </button>
 
   <footer>
-    ※ 本區為 AGI_CODE 活動之「獲獎彩球」展示區。<br>
-    ※ 彩球象徵古堡對候選人的認可，而非實體獎品。
+    ※ 本區為 AGI_CODE 活動之「獲獎展示台」。<br>
+    ※ 獎杯象徵古堡對候選人的認可，而非實體獎品。
   </footer>
 
 </body>
 </html>
+
 
 
 
