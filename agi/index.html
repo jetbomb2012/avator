@@ -1,95 +1,8 @@
 <!DOCTYPE html>
-<html lang="zh">
-<head>
-  <meta charset="UTF-8">
-  <title>每五分鐘自動輪播 C3（水晶球框）</title>
-  <style>
-    body {
-      background: #000;
-      color: #fff;
-      font-family: sans-serif;
-    }
-    .player-box {
-      width: 420px;
-      height: 420px;
-      border-radius: 50%; /* 圓形框 */
-      margin: 40px auto;
-      background: radial-gradient(circle at center, #88f 30%, #000 100%);
-      box-shadow: 0 0 40px rgba(0, 200, 255, 0.7);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      text-align: center;
-      padding: 10px;
-    }
-    h2 {
-      margin: 10px 0;
-      font-size: 16px;
-      color: #ffdc00;
-    }
-    video {
-      width: 95%;
-      height: 95%;
-      border-radius: 50%; /* 影片也裁成圓形 */
-      box-shadow: 0 0 20px rgba(255,255,255,0.5);
-    }
-  </style>
-</head>
-<body>
-  <div class="player-box">
-    <h2 id="info"></h2>
-    <video id="autoVideo" controls autoplay muted>
-      <source id="videoSource" src="" type="video/mp4">
-      您的瀏覽器不支援影片播放
-    </video>
-  </div>
-
-  <script>
-    const totalVideos = 13; // 影片總數，可改成 100
-    const video = document.getElementById("autoVideo");
-    const source = document.getElementById("videoSource");
-
-    function getIndexByTime() {
-      const now = new Date();
-      const minuteNumber = Math.floor(now.getTime() / (1000 * 60));
-      const slotNumber = Math.floor(minuteNumber / 5);
-      return (slotNumber % totalVideos) + 1;
-    }
-
-    function playVideo(index) {
-      const file = `foxokiso-C3-${index}.mp4`;
-      source.src = file;
-      video.load();
-      video.play().catch(err => console.log("播放失敗:", err));
-      document.getElementById("info").innerText =
-        `現在播放的是第 ${index} 部影片：${file}`;
-    }
-
-    let currentIndex = getIndexByTime();
-    playVideo(currentIndex);
-
-    video.addEventListener("ended", () => {
-      currentIndex = (currentIndex % totalVideos) + 1;
-      playVideo(currentIndex);
-    });
-
-    setInterval(() => {
-      const timeIndex = getIndexByTime();
-      if (timeIndex !== currentIndex) {
-        currentIndex = timeIndex;
-        playVideo(currentIndex);
-      }
-    }, 60 * 1000);
-  </script>
-</body>
-</html>
-
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <title>古堡花園｜AGI_CODE 電子書入口</title>
+  <title>AGI_CODE 古堡花園｜雙重入口儀式</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -106,8 +19,35 @@
       font-size: 1.8rem;
       color: #d7c68a;
     }
+    /* 水晶球播放器 */
+    .player-box {
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      margin: 2rem auto;
+      background: radial-gradient(circle at center, #88f 30%, #000 100%);
+      box-shadow: 0 0 40px rgba(0, 200, 255, 0.7);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      text-align: center;
+      padding: 10px;
+    }
+    .player-box h2 {
+      margin: 10px 0;
+      font-size: 16px;
+      color: #ffdc00;
+    }
+    video {
+      width: 95%;
+      height: 95%;
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(255,255,255,0.5);
+    }
     /* 資格聲明區 */
-    .statement-box {
+    .statement-box, .verify-box {
       margin: 2rem auto;
       padding: 1.2rem;
       max-width: 32rem;
@@ -121,15 +61,6 @@
       line-height: 1.7;
       font-weight: 600;
       letter-spacing: 0.03em;
-    }
-    /* 金鑰審核區 */
-    .verify-box {
-      margin: 2rem auto;
-      max-width: 32rem;
-      padding: 1rem;
-      border: 2px solid #d7c68a;
-      border-radius: 8px;
-      background: rgba(215,198,138,0.08);
     }
     input {
       width: 80%;
@@ -151,7 +82,6 @@
     }
     button:hover { background: #d7c68a; }
     #verifyResult { margin-top: 1rem; font-weight: 600; }
-    /* 電子書閱讀器 iframe */
     iframe {
       width: 95%;
       height: 600px;
@@ -170,7 +100,16 @@
 </head>
 <body>
 
-  <h1>AGI_CODE 古堡花園入口</h1>
+  <h1>AGI_CODE 古堡花園｜雙重入口儀式</h1>
+
+  <!-- 水晶球播放器 -->
+  <div class="player-box">
+    <h2 id="info">🌕 水晶球正在召喚影片</h2>
+    <video id="autoVideo" controls autoplay muted>
+      <source id="videoSource" src="" type="video/mp4">
+      您的瀏覽器不支援影片播放
+    </video>
+  </div>
 
   <!-- 資格聲明 -->
   <div class="statement-box">
@@ -188,47 +127,78 @@
     <input id="agiInput" type="text" placeholder="輸入 AGI-CODE (例：AGI-XXXX-YYYY-ZZZZ)">
     <br>
     <button onclick="verifyCode()">審核金鑰</button>
-    <p id="verifyResult">尚未審核</p>
+    <p id="verifyResult">🕯️ 金鑰尚未啟動，花園仍靜候其主。</p>
   </div>
 
   <!-- 電子書閱讀器 -->
   <iframe src="md-reader.html" title="Markdown 電子書閱讀器"></iframe>
 
   <footer>
-    © Foxokiso — AGI_CODE 古堡花園入口 · 電子書與金鑰審核
+    © Foxokiso — AGI_CODE 古堡花園入口 · 電子書與金鑰審核<br>
+    版本：v1.0.0 · 審核時間：<span id="timestamp"></span>
   </footer>
 
   <script>
+    // 水晶球播放器邏輯
+    const totalVideos = 13;
+    const video = document.getElementById("autoVideo");
+    const source = document.getElementById("videoSource");
+    let currentIndex;
+
+    function getIndexByTime() {
+      const now = new Date();
+      const minuteNumber = Math.floor(now.getTime() / (1000 * 60));
+      const slotNumber = Math.floor(minuteNumber / 5);
+      return (slotNumber % totalVideos) + 1;
+    }
+
+    function playVideo(index) {
+      const file = `foxokiso-C3-${index}.mp4`;
+      source.src = file;
+      video.load();
+      video.play().catch(err => {
+        document.getElementById("info").innerText = `❌ 播放失敗：${file}`;
+        console.log("播放失敗:", err);
+      });
+      document.getElementById("info").innerText =
+        `現在播放的是第 ${index} 部影片：${file}`;
+    }
+
+    currentIndex = getIndexByTime();
+    playVideo(currentIndex);
+
+    video.addEventListener("ended", () => {
+      currentIndex = (currentIndex % totalVideos) + 1;
+      playVideo(currentIndex);
+    });
+
+    setInterval(() => {
+      const timeIndex = getIndexByTime();
+      if (timeIndex !== currentIndex) {
+        currentIndex = timeIndex;
+        playVideo(currentIndex);
+      }
+    }, 60 * 1000);
+
+    // 金鑰審核邏輯
     function verifyCode(){
       const code = document.getElementById("agiInput").value.trim();
       const resultBox = document.getElementById("verifyResult");
       if(code.startsWith("AGI-") && code.length > 10){
-        resultBox.textContent = "✅ 格式正確，等待 Jack 親自審認！";
+        resultBox.textContent = "✅ 格式正確，正在傳送至 Jack 的審核台…";
         resultBox.style.color = "#2ecc40";
+        setTimeout(() => {
+          resultBox.textContent = "🕯️ 金鑰已送達，請靜候回應。";
+        }, 2000);
       } else {
         resultBox.textContent = "❌ 格式錯誤，請檢查金鑰。";
         resultBox.style.color = "#ff4136";
       }
     }
+
+    // 時間戳記
+    document.getElementById("timestamp").textContent = new Date().toLocaleString();
   </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
