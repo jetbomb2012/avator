@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>C3（水晶球框）隨機輪播</title>
+  <style>
+    body {
+      background: #000;
+      color: #fff;
+      font-family: sans-serif;
+    }
+    .player-box {
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      margin: 40px auto;
+      background: radial-gradient(circle at center, #88f 30%, #000 100%);
+      box-shadow: 0 0 40px rgba(0, 200, 255, 0.7);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      text-align: center;
+      padding: 10px;
+    }
+    h2 {
+      margin: 10px 0;
+      font-size: 16px;
+      color: #ffdc00;
+    }
+    video {
+      width: 95%;
+      height: 95%;
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(255,255,255,0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="player-box">
+    <h2 id="info"></h2>
+    <video id="autoVideo" controls autoplay muted>
+      <source id="videoSource" src="" type="video/mp4">
+      您的瀏覽器不支援影片播放
+    </video>
+  </div>
+
+  <script>
+    const totalVideos = 13; // 影片總數，可改成 100
+    const video = document.getElementById("autoVideo");
+    const source = document.getElementById("videoSource");
+
+    function getRandomIndex(exclude) {
+      let idx;
+      do {
+        idx = Math.floor(Math.random() * totalVideos) + 1;
+      } while (idx === exclude); // 避免重複同一部
+      return idx;
+    }
+
+    function playVideo(index) {
+      const file = `foxokiso-C3-${index}.mp4`;
+      source.src = file;
+      video.load();
+      video.play().catch(err => console.log("播放失敗:", err));
+      document.getElementById("info").innerText =
+        `現在播放的是第 ${index} 部影片：${file}`;
+    }
+
+    let currentIndex = 1; // 從第一部開始
+    playVideo(currentIndex);
+
+    // 當影片播完，自動隨機挑下一部
+    video.addEventListener("ended", () => {
+      currentIndex = getRandomIndex(currentIndex);
+      playVideo(currentIndex);
+    });
+  </script>
+</body>
+</html>
